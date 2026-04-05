@@ -12,33 +12,42 @@
           <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
         </li>
 
-       
-
          <li class="nav-item">
-          <a class="nav-link" href="{{ route('article.index') }}">I miei articoli</a>  
+          <a class="nav-link" href="{{ route('article.index') }}">Tutti gli Articoli</a>  
         </li>
 
+  
+      
+ @guest
+      {{-- REGISTRATI --}}
+          <li class="nav-item">
+        <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+      </li>
 
-
-
-    
-   
-
+      {{-- ACCEDI --}}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">Accedi</a>
+      </li>
  
+      @endguest    
 
-
-
-
-
-  {{-- CREATE ARTICLE --}}
+ @auth
+ {{-- CREATE ARTICLE --}}
 
       <li class="nav-item">
-          <a class="nav-link" href="{{ route('article.create') }}">Crea articolo</a>
+          <a class="nav-link" href="{{ route('article.create') }}">Crea Articolo</a>
         </li>
       </li>
-      
-    
 
+      {{-- LOGOUT --}}
+         <li class="nav-item">
+        <form  action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button class="nav-link" type="submit" >Logout</button>
+        </form>
+      </li>
+
+  @endauth
 
 
       

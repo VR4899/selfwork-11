@@ -3,7 +3,7 @@
         <div class="container h-100">
             <div class="row justify-content-center align-content-center h-100">
                 <div class="col-12 col-md-6 d-flex justify-content-center">
-                    <h1 class="text-center ">Articolo con ID{{$article->id}}</h1>
+                    <h1 class="text-center ">Articolo di {{$article->user->name}}</h1>
                 </div>
             </div>
         </div>
@@ -20,11 +20,28 @@
                 <div class="card" style="width: 18rem;">
                     <img src="{{Storage::url($article->img)}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{$article->name}}</h5>
+                        <h5 class="card-title">{{$article->title}}</h5>
                         <p class="card-text">{{$article->subtitle}}</p>
                         <p class="card-text">{{$article->body}} </p>
+                    
+
                         
-                        <a href="{{route('article.show',compact('article'))}}" class="btn btn-primary">Dettaglio articolo</a>
+                        
+                        
+
+                        @auth
+                           <a href="{{route('article.edit',compact('article'))}}" class="btn btn-warning my-2">Modifica articolo</a>
+                       
+                     
+                        <form action="{{route('article.destroy',compact('article'))}}" 
+                        method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger" type="submit"> Elimina articolo </button>
+                    
+                        </form>
+                        @endauth
+                        
                     </div>
                 </div>
                 
@@ -34,3 +51,4 @@
     </div>
     
 </x-layout>
+

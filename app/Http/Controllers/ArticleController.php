@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -29,7 +30,7 @@ class ArticleController extends Controller
      */
    public function store(Request $request)
 {
-    // 1. Validazione dei dati
+    
     $request->validate([
         'title' => 'required|string|max:255',
         'subtitle' => 'required|string|max:255',
@@ -37,21 +38,21 @@ class ArticleController extends Controller
         'img' => 'nullable|image|max:2048',
     ]);
 
-    // 2. Percorso immagine di default
     $img = 'img/default.png';
 
-    // 3. Se l'utente carica un'immagine, salvala nello storage pubblico
-    if ($request->hasFile('img')) {
-        $img = $request->file('img')->store('img', 'public');
-    }
 
-    // 4. Creazione dell'articolo
     Article::create([
         'title' => $request->title,
         'subtitle' => $request->subtitle,
         'body' => $request->body,
         'img' => $img,
+        'user_id'=> Auth::user()->id,
     ]);
+   
+    if ($request->hasFile('img')) {
+        $img = $request->file('img')->store('img', 'public');
+        $article->save();
+    }
 
     return redirect()->back()->with('message', 'Articolo creato con successo');
 }
@@ -69,7 +70,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('article.edit', compact('article'));
     }
 
     /**
@@ -77,7 +78,23 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        if ($request->file('img')) {
+            $img = $request->file('img')->store('public/img');
+
+        } else {
+            $img = $article->img;
+        }
+        $article->update([
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'body' => $request->body,
+            'img' => $img,
+
+        ]);
+
+        return redirect(route('article.index'))->with('message', 'Articolo modificato con successo');
+
+
     }
 
     /**
@@ -85,6 +102,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
-    }
+        $article->delete();
+        return redirect()->back()->with('message', 'Articolo eliminato correttamente');   
+        }
 }
