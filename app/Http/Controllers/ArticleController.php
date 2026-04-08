@@ -40,8 +40,11 @@ class ArticleController extends Controller
 
     $img = 'img/default.png';
 
-
-    Article::create([
+    if ($request->hasFile('img')) {
+        $img = $request->file('img')->store('img', 'public');
+        
+    }
+    $article = Article::create([
         'title' => $request->title,
         'subtitle' => $request->subtitle,
         'body' => $request->body,
@@ -49,10 +52,7 @@ class ArticleController extends Controller
         'user_id'=> Auth::user()->id,
     ]);
    
-    if ($request->hasFile('img')) {
-        $img = $request->file('img')->store('img', 'public');
-        $article->save();
-    }
+    
 
     return redirect()->back()->with('message', 'Articolo creato con successo');
 }
@@ -79,7 +79,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         if ($request->file('img')) {
-            $img = $request->file('img')->store('public/img');
+            $img = $request->file('img')->store('img','public');
 
         } else {
             $img = $article->img;

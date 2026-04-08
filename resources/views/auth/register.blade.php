@@ -1,16 +1,9 @@
 <x-layout>
-    <header class="header">
-        <div class="container h-100">
-            <div class="row justify-content-center align-content-center h-100">
-                <div class="col-12 col-md-6 d-flex justify-content-center">
-                    <h1 class="text-center ">Registrati</h1>
-                </div>
-            </div>
-        </div>
-    </header>
+   
+     <x-masthead title="Registrati"></x-masthead>
     <x-display-errors/>
-    <div class="container-">
-        <div class="row mt-5">
+    <div class="container pl-5">
+        <div class="row ">
             <div class="col-12 col-md-6 ">
                 <form class="p-4 shadow rounded-4 bg-body-secondary" action="{{route('register')}}" method="POST">
                     @csrf
@@ -30,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Password</label>
-                        <input type="password_confirmation" name="password_confirmation" class="form-control" id="password_confirmation">
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Registrati</button>

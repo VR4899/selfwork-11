@@ -1,16 +1,8 @@
 <x-layout>
-    <header class="header">
-        <div class="container h-100">
-            <div class="row justify-content-center align-content-center h-100">
-                <div class="col-12 col-md-6 d-flex justify-content-center">
-                    <h1 class="text-center ">Accedi</h1>
-                </div>
-            </div>
-        </div>
-    </header>
+    <x-masthead title="Accedi"></x-masthead>
      <x-display-errors/>
-    <div class="container-">
-        <div class="row mt-5">
+    <div class="container pl-5">
+        <div class="row ">
             <div class="col-12 col-md-6 ">
                 <form class="p-4 shadow rounded-4 bg-body-secondary" action="{{route('login')}}" method="POST">
                     @csrf

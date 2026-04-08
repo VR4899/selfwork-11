@@ -32,6 +32,8 @@
       @endguest    
 
  @auth
+
+ 
  {{-- CREATE ARTICLE --}}
 
       <li class="nav-item">
