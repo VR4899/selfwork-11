@@ -29,6 +29,7 @@
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit"> Elimina articolo </button>
+                         <a href="{{route('article.index')}}" class="btn btn-info my-2">Torna indietro</a>
                     
                         </form>
                         @endauth

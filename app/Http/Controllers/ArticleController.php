@@ -103,6 +103,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect()->back()->with('message', 'Articolo eliminato correttamente');   
+        return redirect()->route('article.index')->with('message', 'Articolo eliminato correttamente');   
         }
 }

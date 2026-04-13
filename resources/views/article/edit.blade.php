@@ -39,8 +39,9 @@
                     <div class="mb-3">
                         <label for="img" class="form-label">Inserisci immagine</label>
                         <input name='img' type="file" class="form-control d-flex me-3 " id="img" >
+                       
                         
-                    </div>
+                    </div> 
                     
                     <button type="submit" class="btn btn-primary">Modifica articolo</button>
                    
