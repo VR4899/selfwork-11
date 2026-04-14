@@ -16,14 +16,27 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
-        });
-         foreach ($tags as $tag) {
+            });
+            $tags= ['Attualità',
+            'Sport',
+            'Politica',
+            'Economia',
+            'Cultura',
+            'Musica',
+            'E-sports',
+            'Cronaca',
+            'Satira',
+            'Scientifico',
+            'Trend',
+            'Formazione',
+            'Motori'];
+         
+            foreach ($tags as $tag) {
             Tag::create([
                 'name'=> $tag,
                 
             ]);
         }
-        $tags= ['Attualità', 'Sport', 'Politica', 'Economia', 'Cultura','Musica', ' E-sports', 'Cronaca', 'Satira', ' Scientifico', 'Trend', 'Formazione', 'Motori' ];
 
     }
 

@@ -19,7 +19,7 @@
                    
             
                    
-                    <button type="submit" class="btn btn-primary">Registrati</button>
+                    <button type="submit" class="btn btn-primary">Accedi</button>
                 </form>
                 
             </div>
